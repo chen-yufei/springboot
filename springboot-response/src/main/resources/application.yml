@@ -1,0 +1,4 @@
+spring:
+  mvc:
+    contentnegotiation:
+      favor-parameter: true  #开启请求参数内容协商模式
