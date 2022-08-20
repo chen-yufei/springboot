@@ -12,8 +12,6 @@ import javax.servlet.http.HttpSession;
 public class IndexController {
 
 
-
-
     /*
     * 前往登录页
     * */
