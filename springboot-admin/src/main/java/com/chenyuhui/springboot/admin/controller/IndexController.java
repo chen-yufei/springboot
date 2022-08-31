@@ -1,15 +1,27 @@
 package com.chenyuhui.springboot.admin.controller;
 
 import com.chenyuhui.springboot.admin.bean.User;
+import com.chenyuhui.springboot.admin.service.UserService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 
+@Slf4j
 @Controller
 public class IndexController {
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private UserService userService;
 
 
     /*
@@ -48,6 +60,15 @@ public class IndexController {
             return "login";
         }
         return "main";
+    }
+
+
+    @ResponseBody
+    @GetMapping("/getTotalUser")
+    public String getTotalUser() {
+        int count = userService.getTotalUser();
+        log.info("用户的总数量为：{}",count);
+        return String.valueOf(count);
     }
 
 
